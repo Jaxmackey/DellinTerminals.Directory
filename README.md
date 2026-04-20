@@ -26,7 +26,7 @@
 
 | Компонент | Технология |
 |-----------|-----------|
-| **Язык** | C# 13 (.NET 8/9) |
+| **Язык** | C# 13 (.NET 9) |
 | **Платформа** | ASP.NET Core 9, Generic Host |
 | **База данных** | PostgreSQL 16 + Npgsql EF Core Provider |
 | **ORM** | Entity Framework Core 9 (Code First, миграции) |
@@ -156,7 +156,7 @@ DellinTerminals.Directory/
 
 ### Предварительные требования
 
-- .NET 8/9 SDK: https://dotnet.microsoft.com/download
+- .NET 9 SDK: https://dotnet.microsoft.com/download
 - Docker Desktop: https://www.docker.com/products/docker-desktop
 - PowerShell 7+ (рекомендуется)
 
@@ -396,10 +396,4 @@ SELECT * FROM phones LIMIT 5;
 
 # Проверить индексы
 SELECT indexname, indexdef FROM pg_indexes WHERE tablename = 'offices';
-```
-
-Для запуска:
-```bash
-dotnet test tests/DellinTerminals.Tests.Unit
-dotnet test tests/DellinTerminals.Tests.Integration
 ```
