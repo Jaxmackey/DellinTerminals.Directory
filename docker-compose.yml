@@ -1,0 +1,21 @@
+﻿services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dellin_dictionary_db
+    environment:
+      POSTGRES_DB: dellin_dictionary
+      POSTGRES_USER: dellin_user
+      POSTGRES_PASSWORD: SecureP@ss123!
+    ports:
+      - "5432:5432"  # <-- ВАЖНО: кавычки, двоеточие, без пробелов
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U dellin_user -d dellin_dictionary" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
