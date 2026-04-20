@@ -26,7 +26,7 @@
 
 | Компонент | Технология |
 |-----------|-----------|
-| **Язык** | C# 13 (.NET 8/9) |
+| **Язык** | C# 13 (.NET 9) |
 | **Платформа** | ASP.NET Core 9, Generic Host |
 | **База данных** | PostgreSQL 16 + Npgsql EF Core Provider |
 | **ORM** | Entity Framework Core 9 (Code First, миграции) |
