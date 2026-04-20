@@ -39,9 +39,4 @@ public static class DomainToApiMapper
             Additional = domain.Additional
         };
     }
-
-    public static CityIdResponse ToResponse(int cityId)
-    {
-        return new CityIdResponse(cityId);
-    }
 }

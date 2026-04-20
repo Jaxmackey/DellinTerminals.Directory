@@ -7,10 +7,10 @@ public class TerminalsImportBackgroundService : BackgroundService
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly IScheduleService _scheduleService;
     private readonly IConfiguration _configuration;
-    private readonly IHostEnvironment _environment; // ← Добавили
+    private readonly IHostEnvironment _environment;
     private readonly ILogger<TerminalsImportBackgroundService> _logger;
     
-    private readonly string _terminalsFileName; // ← Только имя файла, без пути
+    private readonly string _terminalsFileName; 
     private readonly string _cronExpression;
     private readonly string _timeZoneId;
     private readonly bool _runOnStartup;
@@ -21,7 +21,7 @@ public class TerminalsImportBackgroundService : BackgroundService
         IServiceScopeFactory scopeFactory,
         IScheduleService scheduleService,
         IConfiguration configuration,
-        IHostEnvironment environment, // ← Инжектим окружение
+        IHostEnvironment environment, 
         ILogger<TerminalsImportBackgroundService> logger)
     {
         _scopeFactory = scopeFactory;
@@ -30,7 +30,6 @@ public class TerminalsImportBackgroundService : BackgroundService
         _environment = environment;
         _logger = logger;
         
-        // Храним только имя файла, путь будем строить динамически
         _terminalsFileName = _configuration.GetValue<string>("Files:TerminalsFileName") 
             ?? "terminals.json";
         
