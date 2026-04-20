@@ -1,11 +1,11 @@
-﻿using DellinTerminals.Domain.Entities;
+﻿using DellinTerminals.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DellinTerminals.Infrastructure.Data;
 
 public interface IDbContext
 {
-    DbSet<Office> Offices { get; }
-    DbSet<Phone> Phones { get; }
+    DbSet<OfficeEntity> Offices { get; }
+    DbSet<PhoneEntity> Phones { get; }
     Task<int> SaveChangesAsync(CancellationToken ct);
 }

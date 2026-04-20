@@ -38,8 +38,12 @@ public class FindOfficesByCityQueryHandler : IRequestHandler<FindOfficesByCityQu
             Uuid = o.Uuid,
             Type = o.Type,
             CountryCode = o.CountryCode,
-            Latitude = o.Coordinates.Latitude,
-            Longitude = o.Coordinates.Longitude,
+            Coordinates = new Coordinates
+            {
+                Latitude = o.Coordinates.Latitude,
+                Longitude = o.Coordinates.Longitude
+            },
+    
             AddressRegion = o.AddressRegion,
             AddressCity = o.AddressCity,
             AddressStreet = o.AddressStreet,
@@ -48,7 +52,6 @@ public class FindOfficesByCityQueryHandler : IRequestHandler<FindOfficesByCityQu
             WorkTime = o.WorkTime,
             Phones = o.Phones.Select(p => new Phone
             {
-                Id = p.Id,
                 PhoneNumber = p.PhoneNumber,
                 Additional = p.Additional
             })

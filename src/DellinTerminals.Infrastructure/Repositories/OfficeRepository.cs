@@ -1,7 +1,8 @@
-﻿using DellinTerminals.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using DellinTerminals.Domain.Entities;
 using DellinTerminals.Domain.Interfaces;
 using DellinTerminals.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
+using DellinTerminals.Infrastructure.Mappers;
 
 namespace DellinTerminals.Infrastructure.Repositories;
 
@@ -31,7 +32,8 @@ public class OfficeRepository : IOfficeRepository
                 EF.Functions.ILike(o.AddressRegion, $"%{normalizedRegion}%"));
         }
         
-        return await query.ToListAsync(ct);
+        var entities = await query.ToListAsync(ct);
+        return entities.Select(e => e.ToDomain());
     }
 
     public async Task<int?> GetCityIdByOfficeAsync(
@@ -55,17 +57,13 @@ public class OfficeRepository : IOfficeRepository
 
     public async Task BulkInsertAsync(IEnumerable<Office> offices, CancellationToken ct)
     {
-        // EF Core 8+ поддерживает ExecuteInsertAsync для массовых вставок
-        // Но для совместимости используем AddRangeAsync + SaveChangesAsync
-        // Для реальной оптимизации можно подключить Npgsql.Copy или EFCore.BulkExtensions (по необходимости)
-        
-        await _context.Offices.AddRangeAsync(offices, ct);
+        var entities = offices.Select(o => o.ToEntity());
+        await _context.Offices.AddRangeAsync(entities, ct);
         await _context.SaveChangesAsync(ct);
     }
 
     public async Task<int> DeleteAllAsync(CancellationToken ct)
     {
-        // EF Core 8: ExecuteDeleteAsync - быстрое удаление без загрузки в память
         return await _context.Offices.ExecuteDeleteAsync(ct);
     }
 

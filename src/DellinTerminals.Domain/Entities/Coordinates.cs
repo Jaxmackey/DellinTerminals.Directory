@@ -6,7 +6,6 @@ public class Coordinates
     public double Longitude { get; set; }
     
     public Coordinates() { }
-    
     public Coordinates(double latitude, double longitude)
     {
         Latitude = latitude;

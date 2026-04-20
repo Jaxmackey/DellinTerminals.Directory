@@ -1,19 +1,15 @@
-﻿
-using DellinTerminals.Domain.Enums;
+﻿namespace DellinTerminals.Infrastructure.Data.Entities;
 
-namespace DellinTerminals.Domain.Entities;
-
-public class Office
+public class OfficeEntity
 {
     public int Id { get; set; }
     public string? Code { get; set; }
     public int CityCode { get; set; }
     public string? Uuid { get; set; }
-    public OfficeType? Type { get; set; }
+    public string? Type { get; set; } // string для enum
     public string CountryCode { get; set; } = string.Empty;
     
-    // Value Object
-    public Coordinates? Coordinates { get; set; } = new();
+    public CoordinatesValueObject Coordinates { get; set; } = new();
     
     public string? AddressRegion { get; set; }
     public string? AddressCity { get; set; }
@@ -21,7 +17,9 @@ public class Office
     public string? AddressHouseNumber { get; set; }
     public int? AddressApartment { get; set; }
     public string WorkTime { get; set; } = string.Empty;
-    public IEnumerable<Phone> Phones { get; set; } = new List<Phone>();
     
     public string NormalizedCityName { get; set; } = string.Empty;
+    
+    // Навигация для EF
+    public ICollection<PhoneEntity> Phones { get; set; } = new List<PhoneEntity>();
 }

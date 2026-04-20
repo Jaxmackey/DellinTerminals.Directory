@@ -113,17 +113,15 @@ public class TerminalImportService : ITerminalImportService
                 CityCode = json.CityCode,
                 Uuid = json.Uuid,
                 Type = json.Type,
-                CountryCode = json.CountryCode,
-                /*Coordinates = json.Coordinates != null 
-                    ? new Domain.ValueObjects.Coordinates(json.Coordinates.Latitude, json.Coordinates.Longitude) 
-                    : new Domain.ValueObjects.Coordinates(),*/
+                CountryCode = json.CountryCode, 
+                Coordinates = json.Coordinates != null ? new Coordinates(json.Coordinates.Latitude, 
+                    json.Coordinates.Longitude) : null, 
                 AddressRegion = json.AddressRegion,
                 AddressCity = json.AddressCity,
                 AddressStreet = json.AddressStreet,
                 AddressHouseNumber = json.AddressHouseNumber,
                 AddressApartment = json.AddressApartment,
                 WorkTime = json.WorkTime,
-                // Нормализуем название города для быстрого поиска (индекс)
                 NormalizedCityName = (json.AddressCity ?? string.Empty).Trim().ToLowerInvariant(),
                 Phones = json.Phones?.Select(p => new Phone
                 {
@@ -131,12 +129,6 @@ public class TerminalImportService : ITerminalImportService
                     Additional = p.Additional
                 }).ToList() ?? new List<Phone>()
             };
-            
-            // Связываем Phone с Office (для EF Core)
-            foreach (var phone in office.Phones)
-            {
-                phone.Office = office;
-            }
             
             yield return office;
         }

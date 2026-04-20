@@ -1,12 +1,12 @@
-﻿using DellinTerminals.Domain.Entities;
+﻿using DellinTerminals.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DellinTerminals.Infrastructure.Configurations;
 
-public class PhoneConfiguration : IEntityTypeConfiguration<Phone>
+public class PhoneConfiguration : IEntityTypeConfiguration<PhoneEntity>
 {
-    public void Configure(EntityTypeBuilder<Phone> builder)
+    public void Configure(EntityTypeBuilder<PhoneEntity> builder)
     {
         builder.ToTable("phones");
         
@@ -14,8 +14,5 @@ public class PhoneConfiguration : IEntityTypeConfiguration<Phone>
         
         builder.Property(p => p.PhoneNumber).IsRequired().HasMaxLength(50).HasColumnName("phone_number");
         builder.Property(p => p.Additional).HasMaxLength(100).HasColumnName("additional");
-        builder.Property(p => p.OfficeId).HasColumnName("office_id");
-        
-        builder.HasIndex(p => p.OfficeId).HasDatabaseName("ix_phones_office_id");
     }
 }
