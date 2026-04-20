@@ -156,7 +156,7 @@ DellinTerminals.Directory/
 
 ### Предварительные требования
 
-- .NET 8/9 SDK: https://dotnet.microsoft.com/download
+- .NET 9 SDK: https://dotnet.microsoft.com/download
 - Docker Desktop: https://www.docker.com/products/docker-desktop
 - PowerShell 7+ (рекомендуется)
 
