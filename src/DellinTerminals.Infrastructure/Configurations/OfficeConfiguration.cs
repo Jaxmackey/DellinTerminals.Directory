@@ -18,11 +18,15 @@ public class OfficeConfiguration : IEntityTypeConfiguration<Office>
         builder.Property(o => o.Type).HasConversion<string>().HasColumnName("type");
         builder.Property(o => o.CountryCode).IsRequired().HasMaxLength(10).HasColumnName("country_code");
         
-        // Owned type Coordinates
         builder.OwnsOne(o => o.Coordinates, c =>
         {
-            c.Property(x => x.Latitude).HasColumnName("latitude");
-            c.Property(x => x.Longitude).HasColumnName("longitude");
+            c.Property(x => x.Latitude)
+                .HasColumnName("latitude")
+                .HasColumnType("double precision");
+    
+            c.Property(x => x.Longitude)
+                .HasColumnName("longitude")
+                .HasColumnType("double precision");
         });
         
         builder.Property(o => o.AddressRegion).HasMaxLength(200).HasColumnName("address_region");

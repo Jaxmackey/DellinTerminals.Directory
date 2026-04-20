@@ -1,6 +1,1 @@
 @DellinTerminals.Api_HostAddress = http://localhost:5130
-
-GET {{DellinTerminals.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

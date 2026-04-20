@@ -10,6 +10,8 @@ public class Office
     public string? Uuid { get; set; }
     public OfficeType? Type { get; set; }
     public string CountryCode { get; set; } = string.Empty;
+    public double Latitude { get; init; }
+    public double Longitude { get; init; }
     public Coordinates Coordinates { get; set; } = new();
     public string? AddressRegion { get; set; }
     public string? AddressCity { get; set; }
@@ -17,6 +19,6 @@ public class Office
     public string? AddressHouseNumber { get; set; }
     public int? AddressApartment { get; set; }
     public string WorkTime { get; set; } = string.Empty;
-    public ICollection<Phone> Phones { get; set; } = new List<Phone>();
+    public IEnumerable<Phone> Phones { get; set; } = new List<Phone>();
     public string NormalizedCityName { get; set; } = string.Empty;
 }
