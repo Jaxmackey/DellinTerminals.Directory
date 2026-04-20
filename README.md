@@ -398,15 +398,6 @@ SELECT * FROM phones LIMIT 5;
 SELECT indexname, indexdef FROM pg_indexes WHERE tablename = 'offices';
 ```
 
-### Автоматические тесты (план)
-
-В репозитории заложена структура для тестов:
-```
-tests/
-├── DellinTerminals.Tests.Unit/      # xUnit тесты на хендлеры, мапперы
-└── DellinTerminals.Tests.Integration/ # Тесты API с WebApplicationFactory
-```
-
 Для запуска:
 ```bash
 dotnet test tests/DellinTerminals.Tests.Unit
