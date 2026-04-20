@@ -397,9 +397,3 @@ SELECT * FROM phones LIMIT 5;
 # Проверить индексы
 SELECT indexname, indexdef FROM pg_indexes WHERE tablename = 'offices';
 ```
-
-Для запуска:
-```bash
-dotnet test tests/DellinTerminals.Tests.Unit
-dotnet test tests/DellinTerminals.Tests.Integration
-```
